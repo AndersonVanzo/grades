@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades :: Aluno</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon.png') }}">
+    <!-- fontes do google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- css do materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <div class="sidebar">
+
+        <h3>GRADES</h3>
+        <br>
+
+        <img class="circle responsive-img" src="{{ url_for('static', filename='icon.png') }}">
+        <h6>{{ name }}</h6>
+
+        <a href="{{ url_for('chat') }}">Chat</a>
+        <a href="{{ url_for('logout') }}">Sair</a>
+
+    </div>
+
+    <div class="main">
+        <div class="conteudo center-align">
+            {% for test in tests %}
+                <div>
+                    <h5>{{ test.title }}</h5>
+                    <p>{{ test.description }}</p>
+
+                    {% if students %}
+                        {% for student in students %}
+                            {% if student.number == test.number %}
+                                {% if student.answered %}
+                                    {% if student.revised %}
+                                        <p>Status: <b>Corrigido</b></p>
+                                        <p>Nota: <b>{{ student.grade }}</b></p>
+                                    {% else %}
+                                        <p>Status: <b>Não Corrigido</b></p>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+                    <a class="waves-effect waves-light btn botao" href="{{ url_for('test', number=test.number) }}">RESPONDER</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- js do materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script></script>
+</body>
+</html>

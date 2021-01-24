@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades :: Cadastro</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon.png') }}">
+    <!-- fontes do google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- css do materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="row" style="margin-top: 5%;">
+        <div class="col s12 m4 offset-m4">
+            <div class="card z-depth-5">
+                <div class="card-action center-align" style="background-color:#000; color:#FCA311">
+                    <h3><b>GRADES</b></h3>
+                </div>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    <div style="margin: 1%; padding: 1%; background-color: yellow;">
+                        <ul class=flashes>
+                            {% for category, message in messages %}
+                            <li class="{{ category }}">{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                {% endwith %}
+
+                <div class="card-content">
+                    <form action="/signupteacher" method="POST">
+                        {{ form.csrf_token }}
+
+                        <div class="form-field">
+                            <label for="name">Nome Completo</label>
+                            {{ form.name(_id="name") }}
+                        </div>
+                        <br>
+
+                        <div class="form-field">
+                            <label for="username">Usuário</label>
+                            {{ form.username(_id="username") }}
+                        </div>
+                        <br>
+
+                        <div class="form-field">
+                            <label for="password">Senha</label>
+                            {{ form.password(_id="password") }}
+                        </div>
+                        <br>
+
+                        <div class="form-field">
+                            <label for="email">Email</label>
+                            {{ form.email(_id="email") }}
+                        </div>
+                        <br>
+
+                        <div class="form-field">
+                            <button type="submit" class="btn-large waves-effect waves-light"
+                                    style="width: 100%;background-color:#000; color:#FCA311"><b>CADASTRAR</b></button>
+                        </div>
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- js do materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

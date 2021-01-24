@@ -1,0 +1,113 @@
+body {
+    background-color: #E5E5E5;
+}
+
+.sidebar {
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    overflow-w: hidden;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.sidebar img {
+    max-width: 50%;
+    border: 2px solid #DFEEF0;
+}
+
+.sidebar h3 {
+    color: #FCA311;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.sidebar h6 {
+    color: #FCA311;
+}
+
+.sidebar a{
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #FCA311;
+    display: block;
+}
+
+.sidebar a:hover{
+    color: #A26402;
+}
+
+.sidebar .botao {
+    margin: 0 2%;
+    color: #FCA311;
+}
+
+.main {
+    margin-left: 20%;
+}
+
+.conteudo {
+    color: #000;
+    margin: 3%;
+    padding: 3%;
+}
+
+.conteudo label {
+    color: #000;
+}
+
+.aviso {
+    color: #000;
+}
+
+
+.botao {
+    background-color: #FCA311;
+    color: #000;
+}
+
+.botao:hover {
+    background-color: #A26402;
+}
+
+.quests {
+    margin-bottom: 1%;
+    margin-top: 1%;
+    padding: 1%;
+    background-color: #E5E5E5;
+    color: #000;
+}
+.quests span {
+    color: #000;
+}
+
+.quests label {
+    color: #000;
+}
+
+textarea {
+   resize: none;
+   width: 100%;
+   height: 80px;
+}
+
+th a{
+    color: #FCA311;
+}
+
+th a:hover{
+    color: #A26402;
+}
+
+*::placeholder {
+    color: #666;
+}
+
+.revise {
+    text-align: left;
+}

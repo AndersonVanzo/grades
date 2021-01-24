@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades :: Professor</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon.png') }}">
+    <!-- fontes do google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- css do materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <div class="sidebar">
+
+        <h3>GRADES</h3>
+        <h6><i>Professor</i></h6>
+
+        <img class="circle responsive-img" src="{{ url_for('static', filename='icon.png') }}">
+        <h6>{{ name }}</h6>
+
+        <a href="#">Chat</a>
+        <a href="#" onclick="history.back(-1)">Voltar</a>
+        <a href="{{ url_for('logout') }}">Sair</a>
+    </div>
+
+    <div class="main">
+        <div class="conteudo center-align">
+            <table>
+                {% for student in students %}
+                    <tbody>
+                        <th>{{student.name}}</th>
+                        <th><a href="{{ url_for('revise', name=student.name, number=student.number) }}">Corrigir</a></th>
+                    </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <!-- js do materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems);
+          });
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades :: Professor</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon.png') }}">
+    <!-- fontes do google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- css do materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <div class="sidebar">
+
+        <h3>GRADES</h3>
+        <br>
+
+        <img class="circle responsive-img" src="{{ url_for('static', filename='icon.png') }}">
+        <h6>{{ name }}</h6>
+
+        <a href="#" onclick="history.back(-1)">Voltar</a>
+        <a href="{{ url_for('logout') }}">Sair</a>
+    </div>
+
+    <div class="main">
+        <div id="content" class="conteudo center-align" style="heigth: 90vh;">
+            <div class="container">
+                {% for message in messages %}
+                    <div class="row">
+                        <div class="col s12">
+                            <p>
+                                <b>{{ message.name }}</b>
+                                <br> {{ message.message }}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Area para digitar a mensagem -->
+            <div class="row" style="heigth: 10vh; position:fixed; bottom: 0; min-width: 70%">
+                <form action="/chat" method="POST">
+                    <div class="form-field col s10">
+                        {{ form.message(_placeholder="Digite uma mensagem...", _id="chat_text") }}
+                    </div>
+                    <div class="form-field col s2">
+                        <button class="waves-effect waves-light btn botao" id="chat_btn" type="submit">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- js do materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(function () {
+            var pusher = new Pusher('ecdbd13504eee32aee84', {
+                cluster: 'us2',
+                forceTLS: true
+            });
+
+            var channel = pusher.subscribe('my-channel');
+            channel.bind('my-event', function(data) {
+                console.log(data.name);
+                let message = data.message;
+                let message_template = `<div class="row">
+                                            <div class="col s12">
+                                                <p>
+                                                    <b></b>
+                                                    <br>${message}
+                                                </p>
+                                            </div>
+                                        </div>`
+
+                $('#content').append(message_template)
+            });
+        });
+
+    </script>
+</body>
+</html>

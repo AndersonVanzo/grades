@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades :: Professor</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon.png') }}">
+    <!-- fontes do google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- css do materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <div class="sidebar">
+
+        <h3>GRADES</h3>
+        <br>
+
+        <img class="circle responsive-img" src="{{ url_for('static', filename='icon.png') }}">
+        <h6>{{ name }}</h6>
+
+        <a href="{{ url_for('chat') }}">Chat</a>
+
+        <a href="{{ url_for('new') }}">Novo</a>
+
+        <a href="{{ url_for('logout') }}">Sair</a>
+    </div>
+
+    <div class="main">
+        <div class="conteudo center-align">
+            {% for test in tests %}
+                <div>
+                    <h5>{{ test.title }}</h5>
+                    <p>{{ test.description }}</p>
+                    <a class="waves-effect waves-light btn botao" href="{{ url_for('view', number=test.number) }}">VISUALIZAR</a>
+                    <a class="waves-effect waves-light btn botao" href="{{ url_for('answers', number=test.number) }}">CORRIGIR</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- js do materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems);
+          });
+    </script>
+</body>
+</html>

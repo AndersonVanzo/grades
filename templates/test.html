@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades :: Aluno</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon.png') }}">
+    <!-- fontes do google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- css do materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <div class="sidebar">
+
+        <h3>GRADES</h3>
+        <h6><i>Aluno</i></h6>
+
+        <img class="circle responsive-img" src="{{ url_for('static', filename='icon.png') }}">
+        <h6>{{ name }}</h6>
+
+
+    </div>
+
+    <div class="main">
+        <div class="container" style="margin-top: 3%">
+            <h3>{{ test.title }}</h3>
+            <h6>{{ test.description }}</h6>
+
+            <br><hr style="border: 1px solid #000; padding: 0;"><br>
+
+            <form action="/test/{{number}}" method="POST">
+                {% for question in questions %}
+                    <p>{{ question.description }}</p>
+                {{ form.answer(_class="validate", _id="resposta", _style="resize:none") }}
+                {% endfor %}
+
+                <div class="form-field">
+                    <button class="waves-effect waves-dark btn botao" type="submit">ENVIAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- js do materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script></script>
+</body>
+</html>
